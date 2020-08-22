@@ -1,0 +1,23 @@
+{% extends "base.html"%}
+{% load static %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'AIMcss/profile.css' %}" type="text/css" />
+{% endblock %}
+{% block content %}
+    <div class="profile">
+        {% if profile_info.profile.nickname %}
+        <h2>{{profile_info.profile.nickname}}</h2>
+        {% endif %}
+        {% comment %} {% if user == profile_info %}
+        <a href="{% url 'account:profile_update' %}">
+            <button type="button" class="btn">프로필 편집</button></a></h2>
+        {% endif %} {% endcomment %}
+        <h3> username: {{profile_info.username}} <br>
+            {% if profile_info.Profile is not None %}
+            nickname: {{profile_info.profile.nickname}} <br>
+            location: {{profile_info.profile.location}} <br>
+            age: {{profile_info.profile.age}} <br>
+            {% endif %}
+        </h3>
+    </div>
+{%endblock%}
