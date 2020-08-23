@@ -5,29 +5,69 @@
 {% endblock %}
     {% block content %}
     <section class="signup">
-        <h2 id="bigsignup">회원가입</h2>
-        <ul>
-        
-            {% if form.errors %}
-            <p style="color:red;">정보를 알맞게 입력하지 않습니다. 다시 시도해주세요.</p>
-            {% endif %}
+        {% if profile_info %}
+            <h2 id="bigsignup">{{profile_info.username}} 회원정보 수정</h2>
+            <ul>
+                {% if form.errors %}
+                    <p style="color:red;">정보를 알맞게 입력하지 않습니다. 다시 시도해주세요.</p>
+                {% endif %}
+                <form action="{% url 'signup' %}" method="POST">{% csrf_token %}
+                    <li><label for="id_nickname"></label>
+                    <input type="text" name="nickname" maxlength="20" id="id_nickname" placeholder="nickname" title="닉네임 입력"></li>
+                    <li><label for="id_location"></label>
+                    <input type="text" name="location" maxlength="50" id="id_location" placeholder="location" title="위치 입력"></li>
+                    <li><label for="id_age"></label>
+                    <input type="number" name="age" min="0" id="id_age" placeholder="age" title="나이 입력"></li> 
+                    <li><input type="submit" class="signup-button" value="회원가입"></li> 
+                </form>
+        {% else %}
+            <h2 id="bigsignup">회원가입</h2>
+            <ul>
+                {% if form.errors %}
+                    <p style="color:red;">정보를 알맞게 입력하지 않습니다. 다시 시도해주세요.</p>
+                {% endif %}
+                <form action="{% url 'signup' %}" method="POST">{% csrf_token %}
+                    <li><label for="id_username"></label> 
+                    <input type="text" name="username" maxlength="150" autofocus="" required="" id="id_username" placeholder="ID // 문자, 숫자 그리고 @/./+/-/_만 가능합니다." title="아이디 입력">
+                    <li><label for="id_password1"></label>
+                    <input type="password" name="password1" autocomplete="new-password" required="" id="id_password1" placeholder="비밀번호" title="비밀번호 입력">
+                    <span class="helptext"></span></li>
+                    <ul>
+                        <li class="help-text">다른 개인 정보와 유사한 비밀번호는 사용할 수 없습니다.</li>
+                        <li class="help-text">비밀번호는 최소 8자 이상이어야 합니다.</li>
+                        <li class="help-text">통상적으로 자주 사용되는 비밀번호는 사용할 수 없습니다.</li>
+                        <li class="help-text">숫자로만 이루어진 비밀번호는 사용할 수 없습니다.</li>
+                    </ul>
+                    <li></li>
+                    <li><label for="id_password2"></label>
+                    <input type="password" name="password2" autocomplete="new-password" required="" id="id_password2" placeholder="비밀번호 확인" title="비밀번호 확인">
+                    <li><label for="id_email"></label>
+                    <input type="email" name="email" required="" id="id_email" placeholder=" E-mail" title="이메일 입력"></li>
+                    <li><label for="id_nickname"></label>
+                    <input type="text" name="nickname" maxlength="20" id="id_nickname" placeholder="nickname" title="닉네임 입력"></li>
+                    <li><label for="id_location"></label>
+                    <input type="text" name="location" maxlength="50" id="id_location" placeholder="location" title="위치 입력"></li>
+                    <li><label for="id_age"></label>
+                    <input type="number" name="age" min="0" id="id_age" placeholder="age" title="나이 입력"></li> 
+                    <li><input type="submit" class="signup-button" value="회원가입"></li> 
+                </form>
+                {% comment %} <form action="{% url 'signup' %}" method="POST"> {% endcomment %}
+                    {% comment %} <li><input type="text" name="username" placeholder="ID" title="아이디 입력"/></li>
+                    <li><input type="text" name="Email" placeholder="E-mail" title="이메일 입력"/></li>
+                    <li><input type="text" name="nickname" placeholder="nickname" title="닉네임 입력"/></li>
+                    <li><input type="text" name="location" placeholder="location" title="위치 입력"/></li>
+                    <li><input type="text" name="age" placeholder="age" title="나이 입력"/></li>
+                    <li><input type="password" name="password1" placeholder="비밀번호" title="비밀번호 입력"/></li>
+                    <li><input type="password" name="password2" placeholder="비밀번호 확인" title="비밀번호 확인"/></li>
+                    <li><input type="submit" class="signup-button" value="회원가입"></li> {% endcomment %}
 
-            <form action="{% url 'signup' %}" method="POST">{% csrf_token %}
-                {% comment %} <li><input type="text" name="username" placeholder="ID" title="아이디 입력"/></li>
-                <li><input type="text" name="Email" placeholder="E-mail" title="이메일 입력"/></li>
-                <li><input type="text" name="nickname" placeholder="nickname" title="닉네임 입력"/></li>
-                <li><input type="text" name="location" placeholder="location" title="위치 입력"/></li>
-                <li><input type="text" name="age" placeholder="age" title="나이 입력"/></li>
-                <li><input type="password" name="password1" placeholder="비밀번호" title="비밀번호 입력"/></li>
-                <li><input type="password" name="password2" placeholder="비밀번호 확인" title="비밀번호 확인"/></li>
-                <li><input type="submit" class="signup-button" value="회원가입"></li> {% endcomment %}
+                    {% comment %} {{signup_form.as_p}}
+                    {{profile_form.as_p}} 
+                    <li><input type="submit" class="signup-button" value="회원가입"></li> 
 
-                {{user_form.as_p}}
-                {{profile_form.as_p}} 
-                <li><input type="submit" class="signup-button" value="회원가입"></li> 
-
-            </form>
-        </ul>
+                </form> {% endcomment %}
+            </ul>
+        {% endif %}
     </section>
 {% endblock %}
 

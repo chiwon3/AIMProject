@@ -5,11 +5,11 @@ import requests
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
 import os
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "AIM.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings")
 import time
 import json
 
-def save_webtoon_data(request):
+def save_naver_webtoon_data(request):
     naver_request = requests.get('http://comic.naver.com/webtoon/weekday.nhn')
     naver_html = naver_request.text
     naver_request.raise_for_status()

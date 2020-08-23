@@ -35,7 +35,6 @@ def signup(request):
             get_profile.age = profile_form.cleaned_data['age']
 
             get_profile.save()
-            print('why')
             return redirect('index')
 
         else:
@@ -78,3 +77,19 @@ def profile(request,pk):
     profile_info = User.objects.get(id = pk)
     context['profile_info'] = profile_info
     return render(request,'profile.html',context)
+    
+def profile_update(request,pk):   
+    if request.method == "POST":
+        context=dict()
+        profile_info = User.objects.get(id = pk)
+        context['profile_info'] = profile_info
+        profile_form = ProfileForm(request.POST)
+        get_profile = Profile.objects.get(id = user.profile.id)
+        get_profile.nickname = request.POST.get('nickname')
+        get_profile.location = request.POST.get('location')
+        get_profile.age = request.POST.get('age')
+        get_profile.save()
+        return redirect('index')
+
+    else:
+        return redirect('index')
