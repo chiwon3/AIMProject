@@ -74,7 +74,7 @@
 }
 
 
-.search-items {
+/* .search-items {
   position: relative;
   display: flex;
 }
@@ -124,7 +124,7 @@
 #naver-submit {
   background: #1ec800;
   border-color: #1ec800;
-} 
+}  */
 
 .containerbox {
   width:100%;
@@ -157,4 +157,37 @@
 .items > iframe {
   width : 60vh;
   height : 70vh;
+}
+
+.tab_menu_container {
+  display:flex;
+}
+
+.tab_menu_btn {
+  background:none;
+  border:0;
+  outline:0;
+  cursor:pointer;
+  width:80px;
+  height:40px;
+  transition:0.3s all;
+}
+
+.tab_menu_btn.on {
+  border-bottom:2px solid red;
+  font-weight:700;
+  color:red;
+}
+
+.tab_menu_btn:hover {
+  color:red;
+}
+
+.tab_box {
+  display:none;
+  padding:20px;
+}
+
+.tab_box.on {
+  display:block;
 }
