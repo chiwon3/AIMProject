@@ -17,9 +17,15 @@
         {% block rightnav%}
         <div class="setting-bar">
         {% if user.is_authenticated %}
+            {% if tab_form is not None %}
             <a href="{% url 'edit_page' user.id %}">
                 <img src="{% static 'AIMimage/cog-solid.svg' %}" onclick="alert('수정화면으로 이동합니다.');" style="cursor:pointer;" class="settinglist" id="setting-icon">
             </a>
+            {% else %}
+            <a href="{% url 'create_page' user.id %}">
+                <img src="{% static 'AIMimage/cog-solid.svg' %}" onclick="alert('수정화면으로 이동합니다.');" style="cursor:pointer;" class="settinglist" id="setting-icon">
+            </a>
+            {% endif %}
             <div class="dropdown">
                 <div class="dropdown_display"> 메뉴 <span>▼</span></div>
                 <div class="dropdown_itembox">
