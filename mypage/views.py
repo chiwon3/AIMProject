@@ -1,172 +1,55 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
-from .forms import Tabform
-from .models import tab11,tab12,tab13,tab21,tab22,tab23,tab31,tab32,tab33
+from .forms import Urlform1,Urlform2,Urlform3
+from .models import CustomUrl1,CustomUrl2,CustomUrl3
+from django.contrib.auth import get_user_model
+from django.conf import settings
+User = get_user_model()
 
 # Create your views here.
 
 def index(request): 
-    return render(request, 'index_copy.html')
+    custom_urls1 = CustomUrl1.objects.all()
+    custom_urls2 = CustomUrl2.objects.all()
+    custom_urls3 = CustomUrl3.objects.all()
+    context = {}
+    context['custom_urls1'] = custom_urls1
+    context['custom_urls2'] = custom_urls2
+    context['custom_urls3'] = custom_urls3
+    return render(request, 'index_copy.html', context)
 
 
-def create_page(request, pk):
+def create1(request,pk):
     context = dict()
-    profile_info = User.objects.get(id = pk)
+    
     if request.method == "POST":
-        user_tab_form = Tabform(request.POST)
-        if user_tab_form.is_valid():
-            success_form = user_tab_form.save(commit=False)
+        temp_form = Urlform1(request.POST)
+        if temp_form.is_valid():
+            success_form = temp_form.save(commit=False)
             
-            success_form.author = User.objects.get(id = request.user.id)
+            success_form.user = User.objects.get(id = pk)
             success_form.save()
-            return redirect('index.html')
+            return redirect('index')
         else:
-            context["tab_form"] = user_tab_form
-            return render(request,'edit.html.',context)
+            context["temp_context"] = temp_form
+            return render(request,'edit.html',context)
     else:
-        context["tab_form"] = Tabform()
+        context["temp_context"] = Urlform1()
         return render(request,'edit.html', context)
 
 
-def edit_page_11(request, pk):
+def update1(request,pk):
     context = dict()
-    profile_info = User.objects.get(id = pk)
+    
     if request.method == "POST":
-        user_tab_form = Tabform(request.POST,instance=tab11.objects.get(id = request.user.id))
-        if user_tab_form.is_valid():
-            user_tab_form.save()
-            return render(request, 'index.html')
+        temp_form = Urlform1(request.POST,instance=CustomUrl1.objects.get(id = pk))
+        
+        if temp_form.is_valid():
+            temp_form.save()
+            return redirect('index')
         else:
-            context["tab_form"] = user_tab_form
+            context["temp_context"] = temp_form
             return render(request,'edit.html',context)
     else:
-        context["tab_form"] = Tabform(instance=tab11.objects.get(id = request.user.id))
-        return render(request,'edit.html', context)
-
-
-def edit_page_12(request, pk):
-    context = dict()
-    profile_info = User.objects.get(id = pk)
-    if request.method == "POST":
-        user_tab_form = Tabform(request.POST,instance=tab12.objects.get(id = request.user.id))
-        if user_tab_form.is_valid():
-            user_tab_form.save()
-            return render(request, 'edit.html')
-        else:
-            context["tab_form"] = user_tab_form
-            return render(request,'edit.html',context)
-    else:
-        context["tab_form"] = Tabform(instance=tab12.objects.get(id = request.user.id))
-        return render(request,'edit.html', context)
-
-
-def edit_page_13(request, pk):
-    context = dict()
-    profile_info = User.objects.get(id = pk)
-    if request.method == "POST":
-        user_tab_form = Tabform(request.POST,instance=tab13.objects.get(id = request.user.id))
-        if user_tab_form.is_valid():
-            user_tab_form.save()
-            return render(request, 'edit.html')
-        else:
-            context["tab_form"] = user_tab_form
-            return render(request,'edit.html',context)
-    else:
-        context["tab_form"] = Tabform(instance=tab13.objects.get(id = request.user.id))
-        return render(request,'edit.html', context)
-
-
-def edit_page_21(request, pk):
-    context = dict()
-    profile_info = User.objects.get(id = pk)
-    if request.method == "POST":
-        user_tab_form = Tabform(request.POST,instance=tab21.objects.get(id = request.user.id))
-        if user_tab_form.is_valid():
-            user_tab_form.save()
-            return render(request, 'edit.html')
-        else:
-            context["tab_form"] = user_tab_form
-            return render(request,'edit.html',context)
-    else:
-        context["tab_form"] = Tabform(instance=tab21.objects.get(id = request.user.id))
-        return render(request,'edit.html', context)
-
-
-def edit_page_22(request, pk):
-    context = dict()
-    profile_info = User.objects.get(id = pk)
-    if request.method == "POST":
-        user_tab_form = Tabform(request.POST,instance=tab22.objects.get(id = request.user.id))
-        if user_tab_form.is_valid():
-            user_tab_form.save()
-            return render(request, 'edit.html')
-        else:
-            context["tab_form"] = user_tab_form
-            return render(request,'edit.html',context)
-    else:
-        context["tab_form"] = Tabform(instance=tab22.objects.get(id = request.user.id))
-        return render(request,'edit.html', context)
-
-
-def edit_page_23(request, pk):
-    context = dict()
-    profile_info = User.objects.get(id = pk)
-    if request.method == "POST":
-        user_tab_form = Tabform(request.POST,instance=tab23.objects.get(id = request.user.id))
-        if user_tab_form.is_valid():
-            user_tab_form.save()
-            return render(request, 'edit.html')
-        else:
-            context["tab_form"] = user_tab_form
-            return render(request,'edit.html',context)
-    else:
-        context["tab_form"] = Tabform(instance=tab23.objects.get(id = request.user.id))
-        return render(request,'edit.html', context)
-
-
-def edit_page_31(request, pk):
-    context = dict()
-    profile_info = User.objects.get(id = pk)
-    if request.method == "POST":
-        user_tab_form = Tabform(request.POST,instance=tab31.objects.get(id = request.user.id))
-        if user_tab_form.is_valid():
-            user_tab_form.save()
-            return render(request, 'edit.html')
-        else:
-            context["tab_form"] = user_tab_form
-            return render(request,'edit.html',context)
-    else:
-        context["tab_form"] = Tabform(instance=tab31.objects.get(id = request.user.id))
-        return render(request,'edit.html', context)
-
-
-def edit_page_32(request, pk):
-    context = dict()
-    profile_info = User.objects.get(id = pk)
-    if request.method == "POST":
-        user_tab_form = Tabform(request.POST,instance=tab32.objects.get(id = request.user.id))
-        if user_tab_form.is_valid():
-            user_tab_form.save()
-            return render(request, 'edit.html')
-        else:
-            context["tab_form"] = user_tab_form
-            return render(request,'edit.html',context)
-    else:
-        context["tab_form"] = Tabform(instance=tab32.objects.get(id = request.user.id))
-        return render(request,'edit.html', context)
-
-
-def edit_page_33(request, pk):
-    context = dict()
-    profile_info = User.objects.get(id = pk)
-    if request.method == "POST":
-        user_tab_form = Tabform(request.POST,instance=tab33.objects.get(id = request.user.id))
-        if user_tab_form.is_valid():
-            user_tab_form.save()
-            return render(request, 'edit.html')
-        else:
-            context["tab_form"] = user_tab_form
-            return render(request,'edit.html',context)
-    else:
-        context["tab_form"] = Tabform(instance=tab33.objects.get(id = request.user.id))
+        context["temp_context"] = Urlform1(instance=CustomUrl1.objects.get(id = pk))
         return render(request,'edit.html', context)

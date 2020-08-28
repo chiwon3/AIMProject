@@ -1,5 +1,5 @@
 .tab .tabindex{
-  padding : 1.3vh 1vh 1.3vh 0px;
+  padding : 1.3vh 0.4vw 1.3vh 0.4vw;
   margin-left: 1vh;
   border-radius: 5px;
   font: bold 15px;
@@ -133,6 +133,7 @@
 
 .search {
   margin-top : 10vh;
+  margin-left : 5px;
   width:100%;
   min-height: 5vh;
   display:flex;
@@ -246,6 +247,7 @@
 .containers.active {
   display: flex;
   justify-content: space-between;
+  margin-left : 10px;
 }
 
 .containeritem {
@@ -255,10 +257,90 @@
   position: relative;
 }
 
+h3 {
+  text-align : center;
+}
+
+.items {
+  align-items: center;
+}
+
 .item {
   list-style: none;
+  margin-bottom : 5px;
+  cursor : pointer;
+  border-radius: 5px;
+  display: block;
+  width : 150px;
+  height : 40px;
+  align-items: center;
+  text-align : center;
+}
+
+.items a {
+  color : #fff;
+  text-decoration: none;
+  font : bold 15px;
+}
+
+.item a:visited { 
+  color : #fff;
 }
 
 h3 {
   display: flex;
+}
+
+.google-item {
+  background : #3498db;
+  /* color : #ff3f34; */
+}
+
+.naver-item {
+	background : #1ec800;
+}
+
+.kakao-item {
+  background : #FAE301;
+}
+
+a > .kakao-item {
+  color : #391B1B !important;
+}
+
+.red-item {
+	background : #EA2027;
+}
+
+.purple-item {
+	background : #be2edd;
+}
+
+.blue-item {
+	background : #3742fa;
+}
+
+.pink-item {
+	background : #ff6b81;
+}
+
+.skyblue-item {
+	background : #0fbcf9;
+}
+
+.black-item {
+  background : #1e272e;
+}
+
+.yellow-item {
+  background : #ffd32a;
+  color : #000000
+}
+
+.green-item {
+	background : #009432
+}
+
+.orange-item {
+	background : #fa8231;
 }

@@ -74,3 +74,22 @@ Array.from(drop_item).forEach(item=>{
         document.querySelector('.dropdown_display').innerHTML = this.event.target.innerHTML +'<span>▼</span>'
     })
 })
+
+const instaSearch = document.querySelector('#instagram-submit');
+const instaInput = document.querySelector('#instagram-searchTerm');
+
+instaSearch.addEventListener('click', function() {
+	let targetURL = 'https://www.instagram.com/explore/tags/' + instaInput.value;
+	location.href = targetURL;
+})
+
+
+instaInput.addEventListener('keypress', function(e) {
+	if(e.key == 'Enter') {
+		e.preventDefault();
+		let targetURL = 'https://www.instagram.com/explore/tags/' + instaInput.value;
+		location.href = targetURL;
+	}
+	console.log(e.key);
+})
+

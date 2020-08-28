@@ -1,6 +1,6 @@
 var $window = $(window),
     $mainnav = $('.mainnav'),
-    $defaultLogo = '/static/AIMimage/logo.svg',
+    $defaultLogo = '/static/AIMimage/logo-2.png',
     $smallLogo = '/static/AIMimage/logo-small2.svg';
 
     $window.scroll(function(){
