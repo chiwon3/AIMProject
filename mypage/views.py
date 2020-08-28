@@ -6,7 +6,7 @@ from .models import tab11,tab12,tab13,tab21,tab22,tab23,tab31,tab32,tab33
 # Create your views here.
 
 def index(request): 
-    return render(request, 'index.html')
+    return render(request, 'index_copy.html')
 
 
 def create_page(request, pk):
@@ -35,7 +35,7 @@ def edit_page_11(request, pk):
         user_tab_form = Tabform(request.POST,instance=tab11.objects.get(id = request.user.id))
         if user_tab_form.is_valid():
             user_tab_form.save()
-            return render(request, 'edit.html')
+            return render(request, 'index.html')
         else:
             context["tab_form"] = user_tab_form
             return render(request,'edit.html',context)

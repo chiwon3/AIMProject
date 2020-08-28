@@ -20,7 +20,7 @@ class Post(models.Model):
 class Comment(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE, null=True)
     post = models.ForeignKey(Post,on_delete=models.CASCADE)
-    body = models.CharField("내용", max_length=250)
+    body = models.CharField("댓글", max_length=250)
     create_at = models.DateTimeField('작성시간', default = timezone.now)
 
     def __str__(self):

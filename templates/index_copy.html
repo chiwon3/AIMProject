@@ -1,0 +1,515 @@
+{% extends "base.html"%}
+{% load static %}
+{% block head %}
+    <link href="{% static 'AIMcss/index_copy.css' %}" rel="stylesheet" />
+{% endblock %}
+
+{% block leftnav%}
+<div class="tab-bar">
+    <ul class="tab">
+        <li class="tabindex current" data-tab="tab-1">TAB+1</li>
+        <li class="tabindex" data-tab="tab-2">TAB+2</li>
+        <li class="tabindex" data-tab="tab-3">TAB+3</li>
+    </ul>
+</div>
+{% endblock %}
+
+        {% block rightnav%}
+        <div class="setting-bar">
+        {% if user.is_authenticated %}
+            {% if tab_form is not None %}
+            <a href="{% url 'edit_page' user.id %}">
+            {% else %}
+            <a href="{% url 'create_page' user.id %}">
+            {% endif %}
+                <img src="{% static 'AIMimage/cog-solid.svg' %}" onclick="alert('수정화면으로 이동합니다.');" style="cursor:pointer;" class="settinglist" id="setting-icon">
+            </a>
+            <div class="dropdown">
+                <div class="dropdown_display"> 메뉴 <span>▼</span></div>
+                <div class="dropdown_itembox">
+                    <div class="dropdown_item"><a href="{% url 'profile' user.id %}">내 정보</a></div>
+                    {% comment %} <div class="dropdown_item"><a href="{% url 'profile_update' user.id %}">정보수정</a></div> {% endcomment %}
+                    <div class="dropdown_item"><a href="{% url 'logout' %}">로그아웃</a></div>
+                    <div class="dropdown_item"><a href="{% url 'board' %}">게시판</a></div>
+                    <div class="dropdown_item"><a href="{% url 'create' %}">글쓰기</a></div>
+                </div>
+            </div>
+        {% else %}
+            <a href="{% url 'login' %}">
+                <button class="loginbutton">Login</button>
+            </a>
+        {% endif %}
+        </div>        
+        {% endblock %}
+    {% block content %}
+    <div class="search">
+        <div class="search-items" id="google-search">
+            <form action="https://www.google.com/search">
+                <input type="text" name="q" class="searchTerm" id="google-searchTerm" placeholder="S E A R C H">
+                <input type="submit" value="구글 검색" class="search-submit" id="google-submit">
+            </form>
+        </div>
+        <div class="search-items" id="youtube-search">
+            <form action="https://www.youtube.com/results">
+                <input type="text" name="search_query" class="searchTerm" id="youtube-searchTerm" placeholder="S E A R C H">
+                <input type="submit" value="유튜브 검색" class="search-submit" id="youtube-submit">
+            </form>
+        </div>
+        <div class="search-items" id="naver-search">
+            <form action="https://search.naver.com/search.naver">
+                <input type="text" name="query" class="searchTerm" id="naver-searchTerm" placeholder="S E A R C H">
+                <input type="submit"  value="네이버 검색" class="search-submit" id="naver-submit">
+            </form>
+        </div>
+        <div class="search-items" id="namu-search">
+            <form action="https://namu.wiki/w">
+                <input type="text" name="/" class="searchTerm" id="namu-searchTerm" placeholder="S E A R C H">
+                <input type="submit" value="나무위키 검색" class="search-submit" id="namu-submit">
+            </form>
+        </div>
+        <div class="search-items" id="twitter-search">
+            <form action="https://twitter.com/search">
+                <input type="text" name="q" class="searchTerm" id="twitter-searchTerm" placeholder="S E A R C H">
+                <input type="submit" value="트위터 검색" class="search-submit" id="twitter-submit">
+            </form>
+        </div>
+        <div class="search-items" id="instagram-search">
+            <form action="https://www.instagram.com/explore/tags/">
+                <input type="text" name="" class="searchTerm" id="instagram-searchTerm" placeholder="S E A R C H">
+                <input type="submit"  value="인스타 검색" class="search-submit" id="instagram-submit">
+            </form>
+        </div>
+    </div>
+    <hr>
+        <section class="containerbox">
+            <div class="containers active" id="tab-1">
+                <div class="containeritem" id="item-1">
+                    <div class="items" id="포털사이트">
+                        <h3>포털사이트</h3>
+                        <ul>
+                            <li class="item">
+                                <p>google</p>
+                            </li>
+                            <li class="item">
+                                <p>naver</p>
+                            </li>
+                            <li class="item">
+                                <p>daum</p>
+                            </li>
+                            <li class="item">
+                                <p>nate</p>
+                            </li>
+                            <li class="item">
+                                <p>ZUM</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <hr>
+                    <div class="items" id="SNS">
+                        <h3>SNS</h3>
+                        <ul>
+                            <li class="item">
+                                <p>Facebook</p>
+                            </li>
+                            <li class="item">
+                                <p>Instagram</p>
+                            </li>
+                            <li class="item">
+                                <p>Youtube</p>
+                            </li>
+                            <li class="item">
+                                <p>Twitter</p>
+                            </li>
+                            <li class="item">
+                                <p>Naver-Blog</p>
+                            </li>
+                            <li class="item">
+                                <p>Pinterest</p>
+                            </li>
+                            <li class="item">
+                                <p>피키캐스트</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <hr>
+                    <div class="items" id="Cafe">
+                        <h3>Cafe</h3>
+                        <ul>
+                            <li class="item">
+                                <p>네이버 카페</p>
+                            </li>
+                            <li class="item">
+                                <p>다음 카페</p>
+                            </li>
+                            <li class="item">
+                                <p>Youtube</p>
+                            </li>
+                            <li class="item">
+                                <p>Twitter</p>
+                            </li>
+                            <li class="item">
+                                <p>Naver-Blog</p>
+                            </li>
+                            <li class="item">
+                                <p>Pinterest</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <hr>
+                    <div class="items" id="Issue">
+                        <h3>Issue</h3>
+                        <ul>
+                            <li class="item">
+                                <p>네이버 뉴스</p>
+                            </li>
+                            <li class="item">
+                                <p>다음 뉴스</p>
+                            </li>
+                            <li class="item">
+                                <p>BBC</p>
+                            </li>
+                            <li class="item">
+                                <p>NewYork Times</p>
+                            </li>
+                            <li class="item">
+                                <p>정부24</p>
+                            </li>
+                            <li class="item">
+                                <p>청와대 국민청원</p>
+                            </li>
+                            <li class="item">
+                                <p>국회 국민동의청원</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <hr>
+                    <div class="items" id="custom-1">
+                        <h3>custom-1</h3>
+                        <ul>
+                            <li class="item">
+                                <p>custom-1-1</p>
+                            </li>
+                            <li class="item">
+                                <p>custom-1-2</p>
+                            </li>
+                            <li class="item">
+                                <p>custom-1-3</p>
+                            </li>
+                            <li class="item">
+                                <p>custom-1-4</p>
+                            </li>
+                            <li class="item">
+                                <p>custom-1-5</p>
+                            </li>
+                            <li class="item">
+                                <p>custom-1-6</p>
+                            </li>
+                            <li class="item">
+                                <p>custom-1-7</p>
+                            </li>
+                            <li class="item">
+                                <p>custom-1-8</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <hr>
+                    <div class="items" id="custom-2">
+                        <h3>custom-2</h3>
+                        <ul>
+                            <li class="item">
+                                <p>custom-2-1</p>
+                            </li>
+                            <li class="item">
+                                <p>custom-2-2</p>
+                            </li>
+                            <li class="item">
+                                <p>custom-2-3</p>
+                            </li>
+                            <li class="item">
+                                <p>custom-2-4</p>
+                            </li>
+                            <li class="item">
+                                <p>custom-2-5</p>
+                            </li>
+                            <li class="item">
+                                <p>custom-2-6</p>
+                            </li>
+                            <li class="item">
+                                <p>custom-2-7</p>
+                            </li>
+                            <li class="item">
+                                <p>custom-2-8</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <hr>
+                </div>
+            </div>
+            <div class="containers" id="tab-2">
+                <div class="items" id="item-2">
+                    <div class="items" id="webtoon">
+                        <h3>취미-웹툰</h3>
+                        <ul>
+                            <li class="item">
+                                <p>네이버 웹툰</p>
+                            </li>
+                            <li class="item">
+                                <p>다음 웹툰</p>
+                            </li>
+                            <li class="item">
+                                <p>네이트 웹툰</p>
+                            </li>
+                            <li class="item">
+                                <p>레진코믹스</p>
+                            </li>
+                            <li class="item">
+                                <p>탑툰</p>
+                            </li>
+                            <li class="item">
+                                <p>투믹스</p>
+                            </li>
+                            <li class="item">
+                                <p>카카오페이지</p>
+                            </li>
+                            <li class="item">
+                                <p>코미코</p>
+                            </li>
+                            <li class="item">
+                                <p>피키캐스트 웹툰</p>
+                            </li>
+                            <li class="item">
+                                <p>케이툰</p>
+                            </li>
+                            <li class="item">
+                                <p>버프툰</p>
+                            </li>
+                            <li class="item">
+                                <p>봄툰</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <hr>
+                    <div class="items" id="Movie">
+                        <h3>취미-영화</h3>
+                        <ul>
+                            <li class="item">
+                                <p>CGV</p>
+                            </li>
+                            <li class="item">
+                                <p>롯데시네마</p>
+                            </li>
+                            <li class="item">
+                                <p>메가박스</p>
+                            </li>
+                            <li class="item">
+                                <p>넷플릭스</p>
+                            </li>
+                            <li class="item">
+                                <p>왓챠</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <hr>
+                    <div class="items" id="Streaming">
+                        <h3>취미-스트리밍</h3>
+                        <ul>
+                            <li class="item">
+                                <p>아프리카TV</p>
+                            </li>
+                            <li class="item">
+                                <p>Twitch</p>
+                            </li>
+                            <li class="item">
+                                <p>V앱</p>
+                            </li>
+                            <li class="item">
+                                <p>카카오TV</p>
+                            </li>
+                            <li class="item">
+                                <p>곰TV</p>
+                            </li>
+                            <li class="item">
+                                <p>Youtube</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <hr>
+                    <div class="items" id="Game">
+                        <h3>취미-게임</h3>
+                        <ul>
+                            <li class="item">
+                                <p>넥슨</p>
+                            </li>
+                            <li class="item">
+                                <p>NC</p>
+                            </li>
+                            <li class="item">
+                                <p>한게임</p>
+                            </li>
+                            <li class="item">
+                                <p>넷마블</p>
+                            </li>
+                            <li class="item">
+                                <p>LoL</p>
+                            </li>
+                            <li class="item">
+                                <p>inven</p>
+                            </li>
+                            <li class="item">
+                                <p>op.gg</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <hr>
+                    <div class="items" id="Sport">
+                        <h3>취미-스포츠</h3>
+                        <ul>
+                            <li class="item">
+                                <p>네이버 스포츠</p>
+                            </li>
+                            <li class="item">
+                                <p>다음 스포츠</p>
+                            </li>
+                            <li class="item">
+                                <p>ESPN</p>
+                            </li>
+                            <li class="item">
+                                <p>배트맨</p>
+                            </li>
+                            <li class="item">
+                                <p>RKBO</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <hr>
+                </div>
+            </div>    
+            <div class="containers" id="tab-3">
+                <div class="items" id="item-3">
+                    <div class="items" id="Shoping">
+                        <h3>쇼핑</h3>
+                        <ul>
+                            <li class="item">
+                                <p>G마켓</p>
+                            </li>
+                            <li class="item">
+                                <p>11st</p>
+                            </li>
+                            <li class="item">
+                                <p>옥션</p>
+                            </li>
+                            <li class="item">
+                                <p>쿠팡</p>
+                            </li>
+                            <li class="item">
+                                <p>인터파크</p>
+                            </li>
+                            <li class="item">
+                                <p>티몬</p>
+                            </li>
+                            <li class="item">
+                                <p>위메프</p>
+                            </li>
+                            <li class="item">
+                                <p>SSG</p>
+                            </li>
+                            <li class="item">
+                                <p>다나와</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <hr>
+                    <div class="items" id="Map">
+                        <h3>지도</h3>
+                        <ul>
+                            <li class="item">
+                                <p>구글맵</p>
+                            </li>
+                            <li class="item">
+                                <p>카카오맵</p>
+                            </li>
+                            <li class="item">
+                                <p>네이버 지도</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <hr>
+                    <div class="items" id="Translate">
+                        <h3>번역</h3>
+                        <ul>
+                            <li class="item">
+                                <p>파파고</p>
+                            </li>
+                            <li class="item">
+                                <p>구글 번역기</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <hr>
+                    <div class="items" id="E-Study">
+                        <h3>인터넷 강의</h3>
+                        <ul>
+                            <li class="item">
+                                <p>EBS</p>
+                            </li>
+                            <li class="item">
+                                <p>이투스</p>
+                            </li>
+                            <li class="item">
+                                <p>대성마이맥</p>
+                            </li>
+                            <li class="item">
+                                <p>스카이에듀</p>
+                            </li>
+                            <li class="item">
+                                <p>메가스터디</p>
+                            </li>
+                            <li class="item">
+                                <p>YBM</p>
+                            </li>
+                            <li class="item">
+                                <p>영단기</p>
+                            </li>
+                            <li class="item">
+                                <p>시원스쿨</p>
+                            </li>
+                            <li class="item">
+                                <p>해커스</p>
+                            </li>
+                            <li class="item">
+                                <p>파고다</p>
+                            </li>
+                            <li class="item">
+                                <p>에듀윌</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <hr>
+                    <div class="items" id="Coding">
+                        <h3>개발</h3>
+                        <ul>
+                            <li class="item">
+                                <p>Github</p>
+                            </li>
+                            <li class="item">
+                                <p>Stack Overflow</p>
+                            </li>
+                            <li class="item">
+                                <p>getbootstrap</p>
+                            </li>
+                            <li class="item">
+                                <p>Fontawesome</p>
+                            </li>
+                            <li class="item">
+                                <p>Flatuicolors</p>
+                            </li>
+                            <li class="item">
+                                <p>w3schools</p>
+                            </li>
+                        </ul>
+                    <hr>
+                </div>
+            </div>
+        </section>
+    <script src="{% static 'AIMJS/index.js' %}"></script>
+    {% endblock content %}
