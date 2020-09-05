@@ -23,27 +23,39 @@ def create1(request,pk):
     context = dict()
     
     if request.method == "POST":
-        temp_form = Urlform1(request.POST)
-        if temp_form.is_valid():
-            success_form = temp_form.save(commit=False)
-            
-            success_form.user = User.objects.get(id = pk)
-            success_form.save()
+        temp_form1 = Urlform1(request.POST)
+        temp_form2 = Urlform2(request.POST)
+        temp_form3 = Urlform3(request.POST)
+        if temp_form1.is_valid() or temp_form2.is_valid() or temp_form3.is_valid():
+            success_form1 = temp_form1.save(commit=False)
+            success_form2 = temp_form2.save(commit=False)
+            success_form3 = temp_form3.save(commit=False)
+            success_form1.user = User.objects.get(id = pk)
+            success_form2.user = User.objects.get(id = pk)
+            success_form3.user = User.objects.get(id = pk)
+            success_form1.save()
+            success_form2.save()
+            success_form3.save()
             return redirect('index')
         else:
-            context["temp_context"] = temp_form
+            context["temp_context1"] = temp_form1
+            context["temp_context2"] = temp_form2
+            context["temp_context3"] = temp_form3
             return render(request,'edit.html',context)
     else:
-        context["temp_context"] = Urlform1()
+        context["temp_context1"] = Urlform1()
+        context["temp_context2"] = Urlform2()
+        context["temp_context3"] = Urlform3()
         return render(request,'edit.html', context)
 
 
-def update1(request,pk):
+def update1(request,post_id):
     context = dict()
     
     if request.method == "POST":
-        temp_form = Urlform1(request.POST,instance=CustomUrl1.objects.get(id = pk))
-        
+        temp_form1 = Urlform1(request.POST,instance=CustomUrl1.objects.get(id = post_id))
+        temp_form2 = Urlform2(request.POST,instance=CustomUrl2.objects.get(id = post_id))
+        temp_form3 = Urlform3(request.POST,instance=CustomUrl3.objects.get(id = post_id))
         if temp_form.is_valid():
             temp_form.save()
             return redirect('index')
@@ -51,5 +63,5 @@ def update1(request,pk):
             context["temp_context"] = temp_form
             return render(request,'edit.html',context)
     else:
-        context["temp_context"] = Urlform1(instance=CustomUrl1.objects.get(id = pk))
+        context["temp_context"] = Urlform1(instance=CustomUrl1.objects.get(id = post_id))
         return render(request,'edit.html', context)

@@ -31,11 +31,24 @@
         </div>        
         {% endblock %} {% endcomment %}
 {% block content %}
+    <br>
+    <br>
+    <br>
     <hr>
 
         <section class="containerbox">
             <div class="containers active" id="tab-1">
-                <div class="items" id="tab-1-1">
+                <form action="{% url 'edit_page' user.id %}" method="POST">{% csrf_token %}
+                    <span>tab1-custom</span>
+                    {{ temp_context1.as_p }}
+                    <span>tab2-custom</span>
+                    {{ temp_context2.as_p }}
+                    <span>tab2-custom</span>
+                    {{ temp_context3.as_p }}
+                    <input type="submit" class="signup-button" value="저장 ">
+                </form>
+            </div> 
+                {% comment %} <div class="items" id="tab-1-1">
                     <h3>Tab 1 Custom URL Button</h3><br>
                     <form action="{% url 'edit_page' user.id %}" method="POST">{% csrf_token %}
                         <label for="id_title"></label>
@@ -69,7 +82,7 @@
 						<input type="submit" class="save-button" value="저장">
                     </form>
                 </div>
-            </div>
+            </div> {% endcomment %}
         </section>
     <script src="{% static 'AIMJS/edit.js' %}"></script>
     {% endblock content %}

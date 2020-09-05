@@ -27,11 +27,11 @@
             <div class="dropdown">
                 <div class="dropdown_display"> 메뉴 <span>▼</span></div>
                 <div class="dropdown_itembox">
-                    <div class="dropdown_item"><a href="{% url 'profile' user.id %}">내 정보</a></div>
+                    <a href="{% url 'profile' user.id %}"><div class="dropdown_item">내 정보</div></a>
                     {% comment %} <div class="dropdown_item"><a href="{% url 'profile_update' user.id %}">정보수정</a></div> {% endcomment %}
-                    <div class="dropdown_item"><a href="{% url 'logout' %}">로그아웃</a></div>
-                    <div class="dropdown_item"><a href="{% url 'board' %}">게시판</a></div>
-                    <div class="dropdown_item"><a href="{% url 'create' %}">글쓰기</a></div>
+                    <a href="{% url 'logout' %}"><div class="dropdown_item">로그아웃</div></a>
+                    <a href="{% url 'board' %}"><div class="dropdown_item">게시판</div></a>
+                    <a href="{% url 'create' %}"><div class="dropdown_item">글쓰기</div></a>
                 </div>
             </div>
         {% else %}

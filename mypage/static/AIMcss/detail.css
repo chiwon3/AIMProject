@@ -35,3 +35,18 @@ section{
     bottom: -5rem;
     right:0;
 }
+
+#id_body {
+    width:300px;
+}
+
+button {
+    width : 100px;
+    background : #0fbcf9;
+    color : #fff;
+}
+
+span {
+    font-size : 20px;
+    font : bold;
+}

@@ -35,11 +35,14 @@
 
 </section>
 
+<hr>
+<span>Comment</span>
 <form method="POST" action="{% url 'comment_create' detail_post.id %}">
     
     {% csrf_token %}
-   {{comment_form.as_p}}
-<button type="submit">작성</button>
+    <label for="id_body"></label>
+    <input type="text" name="body" maxlength="250" required="" id="id_body">
+    <button type="submit">작성</button>
 </form>
 
 {%for com in comment_all%}

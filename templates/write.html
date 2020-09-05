@@ -13,8 +13,13 @@
 <h1>글쓰기 PAGE</h1>
 <form method="POST">
     {% csrf_token %}
-    {{write_form.as_p}}
-<button type="submit">작성</button>
+    <label for="id_title"></label>
+	<input type="text" name="title" maxlength="50" required="" id="id_title" placeholder="제목">
+	<label for="id_desc"></label>
+	<textarea name="desc" cols="40" rows="10" required="" id="id_desc" placeholder="내용">
+    </textarea>
+	<button type="submit">작성</button>
+</form>
 </form>
 </section>
 {%endblock%}
