@@ -1,7 +1,7 @@
 {% extends "base.html"%}
 {% load static %}
 {% block head %}
-    <link href="{% static 'AIMcss/index_copy.css' %}" rel="stylesheet" />
+    <link href="{% static 'AIMcss/index_copy.css' %}" type="text/css" rel="stylesheet" />
 {% endblock %}
 
 {% block leftnav%}
@@ -17,11 +17,7 @@
         {% block rightnav%}
         <div class="setting-bar">
         {% if user.is_authenticated %}
-            {% if tab_form is not None %}
-            <a href="{% url 'edit_page' user.id %}">
-            {% else %}
             <a href="{% url 'create_page' user.id %}">
-            {% endif %}
                 <img src="{% static 'AIMimage/cog-solid.svg' %}" onclick="alert('수정화면으로 이동합니다.');" style="cursor:pointer;" class="settinglist" id="setting-icon">
             </a>
             <div class="dropdown">
@@ -35,45 +31,47 @@
                 </div>
             </div>
         {% else %}
-            <a href="{% url 'login' %}">
-                <button class="loginbutton">Login</button>
-            </a>
+            <div class="login">
+                <a href="{% url 'login' %}">
+                    <button class="loginbutton">Login</button>
+                </a>
+            </div>
         {% endif %}
         </div>        
         {% endblock %}
     {% block content %}
     <div class="search">
         <div class="search-items" id="google-search">
-            <form action="https://www.google.com/search">
+            <form action="https://www.google.com/search" autocomplete="off">
                 <input type="text" name="q" class="searchTerm" id="google-searchTerm" placeholder="S E A R C H">
                 <input type="submit" value="구글 검색" class="search-submit" id="google-submit">
             </form>
         </div>
         <div class="search-items" id="youtube-search">
-            <form action="https://www.youtube.com/results">
+            <form action="https://www.youtube.com/results" autocomplete="off">
                 <input type="text" name="search_query" class="searchTerm" id="youtube-searchTerm" placeholder="S E A R C H">
                 <input type="submit" value="유튜브 검색" class="search-submit" id="youtube-submit">
             </form>
         </div>
         <div class="search-items" id="naver-search">
-            <form action="https://search.naver.com/search.naver">
+            <form action="https://search.naver.com/search.naver" autocomplete="off">
                 <input type="text" name="query" class="searchTerm" id="naver-searchTerm" placeholder="S E A R C H">
                 <input type="submit"  value="네이버 검색" class="search-submit" id="naver-submit">
             </form>
         </div>
         <div class="search-items" id="namu-search">
-            <form action="https://namu.wiki/Search">
+            <form action="https://namu.wiki/Search" autocomplete="off">
                 <input type="text" name="q" class="searchTerm" id="namu-searchTerm" placeholder="S E A R C H">
                 <input type="submit" value="나무위키 검색" class="search-submit" id="namu-submit">
             </form>
         </div>
         <div class="search-items" id="twitter-search">
-            <form action="https://twitter.com/search">
+            <form action="https://twitter.com/search" autocomplete="off">
                 <input type="text" name="q" class="searchTerm" id="twitter-searchTerm" placeholder="S E A R C H">
                 <input type="submit" value="트위터 검색" class="search-submit" id="twitter-submit">
             </form>
         </div>
-        <div class="search-items" id="instagram-search">
+        <div class="search-items" id="instagram-search" autocomplete="off">
             <form>
                 <input type="text" name="" class="searchTerm" id="instagram-searchTerm" value="" placeholder="S E A R C H">
                 <input type="button" value="인스타 검색" class="search-submit" id="instagram-submit">
@@ -180,15 +178,15 @@
                         </ul>
                     </div>
                     <hr>
-                    <div class="items" id="Cafe">
-                        <h3>Cafe</h3>
+                    <div class="items" id="Translate">
+                        <h3>번역</h3>
                         <ul>
-                            <a href="http://section.cafe.naver.com/"><li class="item naver-item">
-                                네이버 카페
-                            </li></a>
-                            <a href="http://top.cafe.daum.net/"><li class="item kakao-item">
-                                다음 카페
-                            </li></a>
+                            <a href="http://papago.naver.com/"><li class="item naver-item">
+                                파파고</a>
+                            </li>
+                            <a href="http://translate.google.co.kr/"><li class="item google-item">
+                                구글 번역기</a>
+                            </li>
                         </ul>
                     </div>
                     <hr>
@@ -212,41 +210,41 @@
                         <h3>취미-웹툰</h3>
                         <ul>
                             <a href="http://comic.naver.com/webtoon/weekday.nhn"><li class="item naver-item">
-                                네이버 웹툰</a>
-                            </li>
+                                네이버 웹툰
+                            </li></a>
                             <a href="http://page.kakao.com/main"><li class="item kakao-item">
-                                카카오페이지</a>
-                            </li>
+                                카카오페이지
+                            </li></a>
                             <a href="http://www.lezhin.com/ko"><li class="item red-item">
-                                레진코믹스</a>
-                            </li>
+                                레진코믹스
+                            </li></a>
                             <a href="http://webtoon.daum.net/"><li class="item kakao-item">
-                                다음 웹툰</a>
-                            </li>
+                                다음 웹툰
+                            </li></a>
                             <a href="http://comics.nate.com/main/"><li class="item red-item">
-                                네이트 웹툰</a>
-                            </li>
+                                네이트 웹툰
+                            </li></a>
                             <a href="https://www.pikicast.com/#!/menu=category&category_id=227"><li class="item skyblue-item">
-                                피키캐스트 웹툰</a>
-                            </li>
+                                피키캐스트 웹툰
+                            </li></a>
                             <a href="http://toptoon.com/"><li class="item red-item">
-                                탑툰</a>
-                            </li>
+                                탑툰
+                            </li></a>
                             <a href="http://bufftoon.plaync.com/"><li class="item blue-item">
-                                버프툰</a>
-                            </li>
+                                버프툰
+                            </li></a>
                             {% comment %} <li class="item red-item">
-                                <a href="http://www.toomics.com/">투믹스</a>
-                            </li>
+                                <a href="http://www.toomics.com/">투믹스
+                            </li></a>
                             <li class="item black-item">
-                                <a href="http://www.myktoon.com/web/homescreen/main.kt">케이툰</a>
-                            </li>
+                                <a href="http://www.myktoon.com/web/homescreen/main.kt">케이툰
+                            </li></a>
                             <li class="item red-item">
-                                <a href="http://www.comico.kr/">코미코</a>
-                            </li>
+                                <a href="http://www.comico.kr/">코미코
+                            </li></a>
                             <li class="item pink-item">
-                                <a href="http://www.bomtoon.com/">봄툰</a>
-                            </li> {% endcomment %}
+                                <a href="http://www.bomtoon.com/">봄툰
+                            </li></a> {% endcomment %}
                         </ul>
                     </div>
                     <hr>
@@ -254,20 +252,23 @@
                         <h3>취미-영화</h3>
                         <ul>
                             <a href="http://www.cgv.co.kr/"><li class="item red-item">
-                                CGV</a>
-                            </li>
+                                CGV
+                            </li></a>
                             <a href="http://www.megabox.co.kr/"><li class="item purple-item">
-                                메가박스</a>
-                            </li>
+                                메가박스
+                            </li></a>
                             <a href="http://www.lottecinema.co.kr/NLCHS"><li class="item red-item">
-                                롯데시네마</a>
-                            </li>
+                                롯데시네마
+                            </li></a>
                             <a href="http://www.netflix.com/kr/"><li class="item red-item">
-                                넷플릭스</a>
-                            </li>
+                                넷플릭스
+                            </li></a>
                             <a href="http://play.watcha.net/"><li class="item pink-item">
-                                왓챠</a>
-                            </li>
+                                Watcha
+                            </li></a>
+                            <a href="http://www.wavve.com/vod/index.html"><li class="item skyblue-item">
+                                wavve
+                            </li></a>
                         </ul>
                     </div>
                     <hr>
@@ -275,23 +276,23 @@
                         <h3>취미-스트리밍</h3>
                         <ul>
                             <a href="https://afreecatv.com/"><li class="item blue-item">
-                                아프리카TV</a>
-                            </li>
+                                아프리카TV
+                            </li></a>
                             <a href="http://www.twitch.tv/"><li class="item purple-item">
-                                Twitch</a>
-                            </li>
+                                Twitch
+                            </li></a>
                             <a href="http://www.vlive.tv/home/new"><li class="item skyblue-item">
-                                V앱</a>
-                            </li>
+                                V앱
+                            </li></a>
                             <a href="https://tv.kakao.com/"><li class="item kakao-item">
-                                카카오TV</a>
+                                카카오TV
                             </li>
                             <a href="http://www.gomtv.com/"><li class="item yellow-item">
-                                곰TV</a>
-                            </li>
+                                곰TV
+                            </li></a>
                             <a href="http://www.youtube.com/"><li class="item red-item">
-                                Youtube</a>
-                            </li>
+                                Youtube
+                            </li></a>
                         </ul>
                     </div>
                     <hr>
@@ -299,26 +300,26 @@
                         <h3>취미-게임</h3>
                         <ul>
                             <a href="https://kr.leagueoflegends.com/ko-kr/"><li class="item yellow-item">
-                                LoL</a>
-                            </li>
+                                LoL
+                            </li></a>
                             <a href="http://www.nexon.com/Home/Game"><li class="item blue-item">
-                                넥슨</a>
-                            </li>
+                                넥슨
+                            </li></a>
                             <a href="http://www.hangame.com/"><li class="item yellow-item">
-                                한게임</a>
-                            </li>
+                                한게임
+                            </li></a>
                             <a href="http://www.plaync.com/"><li class="item blue-item">
-                                NC</a>
-                            </li>
+                                NC
+                            </li></a>
                             <a href="http://www.netmarble.net/"><li class="item yellow-item">
-                                넷마블</a>
-                            </li>
+                                넷마블
+                            </li></a>
                             <a href="http://www.inven.co.kr/"><li class="item green-item">
-                                inven</a>
-                            </li>
+                                inven
+                            </li></a>
                             <a href="http://www.op.gg/"><li class="item skyblue-item">
-                                op.gg</a>
-                            </li>
+                                op.gg
+                            </li></a>
                         </ul>
                     </div>
                     <hr>
@@ -326,20 +327,20 @@
                         <h3>취미-스포츠</h3>
                         <ul>
                             <a href="http://sports.news.naver.com/index.nhn"><li class="item naver-item">
-                                네이버 스포츠</a>
-                            </li>
+                                네이버 스포츠
+                            </li></a>
                             <a href="https://sports.daum.net/"><li class="item kakao-item">
-                                다음 스포츠</a>
-                            </li>
+                                다음 스포츠
+                            </li></a>
                             <a href="http://www.espn.com/"><li class="item red-item">
-                                ESPN</a>
-                            </li>
+                                ESPN
+                            </li></a>
                             <a href="http://www.betman.co.kr/main.so"><li class="item black-item">
-                                배트맨</a>
-                            </li>
+                                배트맨
+                            </li></a>
                             <a href="http://cafe.daum.net/RKBO"><li class="item red-item">
-                                RKBO</a>
-                            </li>
+                                RKBO
+                            </li></a>
                         </ul>
                     </div>
                     <hr>
@@ -348,8 +349,8 @@
                         <ul>
                             {% for my_url in custom_urls2 %}
                             <a href="{{my_url.url}}"><li class="item skyblue-item">
-                                {{my_url.title}}</a>
-                            </li>
+                                {{my_url.title}}
+                            </li></a>
                             {% endfor %}
                         </ul>
                     </div>
@@ -363,32 +364,32 @@
                         <h3>쇼핑</h3>
                         <ul>
                             <a href="http://www.gmarket.co.kr/"><li class="item green-item">
-                                G마켓</a>
-                            </li>
+                                G마켓
+                            </li></a>
                             <a href="https://www.11st.co.kr/"><li class="item red-item">
-                                11st</a>
-                            </li>
+                                11st
+                            </li></a>
                             <a href="http://www.auction.co.kr/"><li class="item red-item">
-                                옥션</a>
-                            </li>
+                                옥션
+                            </li></a>
                             <a href="http://www.coupang.com/"><li class="item red-item">
-                                쿠팡</a>
-                            </li>
+                                쿠팡
+                            </li></a>
                             <a href="http://www.interpark.com/"><li class="item red-item">
-                                인터파크</a>
-                            </li>
+                                인터파크
+                            </li></a>
                             <a href="http://www.tmon.co.kr/"><li class="item orange-item">
-                                티몬</a>
-                            </li>
+                                티몬
+                            </li></a>
                             <a href="http://front.wemakeprice.com/main"><li class="item red-item">
-                                위메프</a>
-                            </li>
+                                위메프
+                            </li></a>
                             <a href="http://www.ssg.com/"><li class="item pink-item">
-                                SSG</a>
-                            </li>
+                                SSG
+                            </li></a>
                             <a href="http://www.danawa.com/"><li class="item green-item">
-                                다나와</a>
-                            </li>
+                                다나와
+                            </li></a>
                         </ul>
                     </div>
                     <hr>
@@ -396,14 +397,14 @@
                         <h3>지도</h3>
                         <ul>
                             <a href="http://www.google.co.kr/maps"><li class="item google-item">
-                                구글맵</a>
-                            </li>
+                                구글맵
+                            </li></a>
                             <a href="http://map.kakao.com/"><li class="item kakao-item">
-                                카카오맵</a>
-                            </li>
+                                카카오맵
+                            </li></a>
                             <a href="http://map.naver.com/"><li class="item naver-item">
-                                네이버 지도</a>
-                            </li>
+                                네이버 지도
+                            </li></a>
                         </ul>
                     </div>
                     <hr>
@@ -411,11 +412,11 @@
                         <h3>번역</h3>
                         <ul>
                             <a href="http://papago.naver.com/"><li class="item naver-item">
-                                파파고</a>
-                            </li>
+                                파파고
+                            </li></a>
                             <a href="http://translate.google.co.kr/"><li class="item google-item">
-                                구글 번역기</a>
-                            </li>
+                                구글 번역기
+                            </li></a>
                         </ul>
                     </div>
                     <hr>
@@ -423,38 +424,38 @@
                         <h3>인터넷 강의</h3>
                         <ul>
                             <a href="http://www.ebs.co.kr/main"><li class="item blue-item">
-                                EBS</a>
-                            </li>
+                                EBS
+                            </li></a>
                             <a href="http://www.etoos.com/"><li class="item skyblue-item">
-                                이투스</a>
-                            </li>
+                                이투스
+                            </li></a>
                             <a href="http://www.mimacstudy.com/"><li class="item blue-item">
-                                대성마이맥</a>
-                            </li>
+                                대성마이맥
+                            </li></a>
                             <a href="http://skyedu.conects.com/"><li class="item skyblue-item">
-                                스카이에듀</a>
-                            </li>
+                                스카이에듀
+                            </li></a>
                             <a href="http://www.megastudy.net/"><li class="item blue-item">
-                                메가스터디</a>
-                            </li>
+                                메가스터디
+                            </li></a>
                             <a href="http://www.ybm.co.kr/"><li class="item red-item">
-                                YBM</a>
-                            </li>
+                                YBM
+                            </li></a>
                             <a href="http://eng.conects.com/"><li class="item blue-item">
-                                영단기</a>
-                            </li>
+                                영단기
+                            </li></a>
                             <a href="http://www.siwonschool.com/"><li class="item skyblue-item">
-                                시원스쿨</a>
-                            </li>
+                                시원스쿨
+                            </li></a>
                             <a href="https://www.hackers.co.kr/"><li class="item blue-item">
-                                해커스</a>
-                            </li>
+                                해커스
+                            </li></a>
                             <a href="http://www.pagoda21.com/"><li class="item red-item">
-                                파고다</a>
-                            </li>
+                                파고다
+                            </li></a>
                             <a href="http://www.eduwill.net/"><li class="item skyblue-item">
-                                에듀윌</a>
-                            </li>
+                                에듀윌
+                            </li></a>
                         </ul>
                     </div>
                     <hr>
@@ -462,23 +463,23 @@
                         <h3>개발</h3>
                         <ul>
                             <a href="http://github.com/"><li class="item black-item">
-                                Github</a>
-                            </li>
+                                Github
+                            </li></a>
                             <a href="http://stackoverflow.com/"><li class="item orange-item">
-                                Stack Overflow</a>
-                            </li>
+                                Stack Overflow
+                            </li></a>
                             <a href="http://getbootstrap.com/"><li class="item purple-item">
-                                getbootstrap</a>
-                            </li>
+                                getbootstrap
+                            </li></a>
                             <a href="http://www.w3schools.com/"><li class="item green-item">
-                                w3schools</a>
-                            </li>
+                                w3schools
+                            </li></a>
                             <a href="http://fontawesome.com/"><li class="item skyblue-item">
-                                Fontawesome</a>
-                            </li>
+                                Fontawesome
+                            </li></a>
                             <a href="http://flatuicolors.com/"><li class="item blue-item">
-                                Flatuicolors</a>
-                            </li>
+                                Flatuicolors
+                            </li></a>
                         </ul>
                     </div>
                     <hr>
@@ -487,8 +488,8 @@
                         <ul>
                             {% for my_url in custom_urls3 %}
                             <a href="{{my_url.url}}"><li class="item skyblue-item">
-                                {{my_url.title}}</a>
-                            </li>
+                                {{my_url.title}}
+                            </li></a>
                             {% endfor %}
                         </ul>
                     </div>

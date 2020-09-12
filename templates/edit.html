@@ -1,16 +1,21 @@
 {% extends "base.html"%}
 {% load static %}
 {% block head %}
-    <link href="{% static 'AIMcss/edit.css' %}" rel="stylesheet" />
+    <link href="{% static 'AIMcss/edit.css' %}" type="text/css" rel="stylesheet" />
 {% endblock %}
 
 {% block leftnav%}
 <div class="tab-bar">
-    {% comment %} <ul class="tab">
+    <ul class="tab">
         <li class="tabindex current" data-tab="tab-1">TAB+1</li>
         <li class="tabindex" data-tab="tab-2">TAB+2</li>
         <li class="tabindex" data-tab="tab-3">TAB+3</li>
-    </ul> {% endcomment %}
+    </ul>
+</div>
+{% endblock %}
+
+{% block rightnav %}
+<div id="rightnav">
 </div>
 {% endblock %}
 
@@ -35,22 +40,22 @@
     <br>
     <br>
     <hr>
-
-        <section class="containerbox">
+        {% comment %} <section class="containerbox">
             <div class="containers active" id="tab-1">
                 <form action="{% url 'edit_page' user.id %}" method="POST">{% csrf_token %}
                     <span>tab1-custom</span>
                     {{ temp_context1.as_p }}
                     <span>tab2-custom</span>
                     {{ temp_context2.as_p }}
-                    <span>tab2-custom</span>
+                    <span>tab3-custom</span>
                     {{ temp_context3.as_p }}
                     <input type="submit" class="signup-button" value="저장 ">
                 </form>
-            </div> 
-                {% comment %} <div class="items" id="tab-1-1">
+            </div>  {% endcomment %}
+            <div class="containers active" id="tab-1">
+                <div class="items" id="tab-1-1">
                     <h3>Tab 1 Custom URL Button</h3><br>
-                    <form action="{% url 'edit_page' user.id %}" method="POST">{% csrf_token %}
+                    <form action="{% url 'edit_page1' user.id %}" method="POST">{% csrf_token %}
                         <label for="id_title"></label>
 						<input type="text" name="title" maxlength="10" required="" id="id_title" placeholder="버튼 이름"><br>
 						<label for="id_url"></label>
@@ -59,10 +64,10 @@
                     </form>
                 </div>
             </div>
-            <div class="containers active" id="tab-2">
+            <div class="containers" id="tab-2">
                 <div class="items" id="tab-2-1">
                     <h3>Tab 2 Custom URL Button</h3><br>
-                    <form action="{% url 'edit_page' user.id %}" method="POST">{% csrf_token %}
+                    <form action="{% url 'edit_page2' user.id %}" method="POST">{% csrf_token %}
                         <label for="id_title"></label>
 						<input type="text" name="title" maxlength="10" required="" id="id_title" placeholder="버튼 이름"><br>
 						<label for="id_url"></label>
@@ -71,10 +76,10 @@
                     </form>
                 </div>
             </div>
-            <div class="containers active" id="tab-3">
+            <div class="containers" id="tab-3">
                 <div class="items" id="tab-3-1">
                     <h3>Tab 3 Custom URL Button</h3><br>
-                    <form action="{% url 'edit_page' user.id %}" method="POST">{% csrf_token %}
+                    <form action="{% url 'edit_page3' user.id %}" method="POST">{% csrf_token %}
                         <label for="id_title"></label>
 						<input type="text" name="title" maxlength="10" required="" id="id_title" placeholder="버튼 이름"><br>
 						<label for="id_url"></label>
@@ -82,7 +87,7 @@
 						<input type="submit" class="save-button" value="저장">
                     </form>
                 </div>
-            </div> {% endcomment %}
+            </div>
         </section>
     <script src="{% static 'AIMJS/edit.js' %}"></script>
     {% endblock content %}

@@ -1,5 +1,13 @@
 .writebox{
-    padding-bottom:10rem;
+    /* padding-bottom:10rem; */
+}
+
+.board_btn{
+    /* position:relative; */
+    color: white !important;
+    background-color:#0fbcf9;
+    border-radius:0.4rem;
+    padding: 0.5rem 1rem;
 }
 
 section{
@@ -11,10 +19,10 @@ section{
 }
 .dt_title{
     font-size:2.5rem;
-    
+    vertical-align: middle;
     padding-bottom:1rem;
     border-bottom:1.5px solid black;
-    margin-bottom:2rem;
+    display : inline;
 }
 .dt_title span{
     font-size:1.5rem;
@@ -22,13 +30,14 @@ section{
 .dt_desc{
     display:inline-block;
     padding-bottom:1rem;
-    line-height:1.5;
+    /* line-height:1.5; */
 }
 
 .dt_create_at{
-    position:absolute;
+    /* position:absolute;
     bottom: -5rem;
-    left:0;
+    left:0; */
+    float : right;
 }
 .update_btn{
     position:absolute;
@@ -49,4 +58,8 @@ button {
 span {
     font-size : 20px;
     font : bold;
+}
+
+h5,h6 {
+    display: inline;
 }

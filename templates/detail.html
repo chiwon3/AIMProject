@@ -3,52 +3,63 @@
 {% block head %}
     <link rel="stylesheet" href="{% static 'AIMcss/detail.css' %}" type="text/css" />
 {% endblock %}
+{% block rightnav%}
+        <a class="board_btn" href="{% url 'board' %}">
+            게시판
+        </a>
+{% endblock %}
 {% block content %}
 
 <div class="writebox">
 
-<h1>DETAIL PAGE</h1>
+    <h1>DETAIL PAGE</h1>
 
-<section>
-    
-<div class="dt_title">
-    제목 : {{detail_post.title}} 
-    <span>-by {{detail_post.author}}</span>
-</div>
+    <section>
+        
+    <div class="dt_title">
+        {{detail_post.title}} 
+        <span>-by {{detail_post.author}}</span>
+        <div class="dt_create_at"><h6>
+            {{detail_post.create_at}}
+        </h6></div>
+    </div>
+    <br>
+    <br>
+    <div class="dt_desc">
+        {{detail_post.desc}}
 
-<div class="dt_desc">
-    {{detail_post.desc}}
+    </div>
 
-</div>
 
-<div class="dt_create_at">
-    {{detail_post.create_at}}
-
-</div>
-
-{% if detail_post.author == user %}
-<div class="update_btn">
-    <a href="{% url 'update' detail_post.id %}">수정</a> |
-    <a href="{% url 'delete' detail_post.id%}">삭제</a>
+    {% if detail_post.author == user %}
+    <div class="update_btn">
+        <h5>
+        <a href="{% url 'update' detail_post.id %}">수정</a> |
+        <a href="{% url 'delete' detail_post.id%}">삭제</a>
+        </h4>
 </div>
 {% endif %}
 
 </section>
 
 <hr>
-<span>Comment</span>
+{% comment %} <span>Comment</span> {% endcomment %}
 <form method="POST" action="{% url 'comment_create' detail_post.id %}">
     
     {% csrf_token %}
     <label for="id_body"></label>
     <input type="text" name="body" maxlength="250" required="" id="id_body">
-    <button type="submit">작성</button>
+    <button type="submit">등록</button>
 </form>
 
 {%for com in comment_all%}
-    {{com.body}}(by {{com.author}}){% if com.author == user %} ---- <a href="{% url 'comment_delete' detail_post.id com.id %}">X</a>
-    {% endif %}
-    <br>
+    <h4>{{com.author}}</h4>
+    <h5>{{com.body}}</h5>
+    <h6>
+        {% if com.author == user %}
+            ---- <a href="{% url 'comment_delete' detail_post.id com.id %}">삭제</a></h6>
+        {% endif %}
+    <hr>
 {%endfor%}
 </div>
 
