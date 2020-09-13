@@ -281,6 +281,8 @@ h3 {
   height : 40px;
   align-items: center;
   text-align : center;
+  @font-face { font-family: 'BlackHanSans-Regular';
+    src: url('../AIMfont/BlackHanSans-Regular.ttf') format('truetype');}
 }
 
 .items a {

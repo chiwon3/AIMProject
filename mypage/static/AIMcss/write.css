@@ -1,3 +1,12 @@
+#leftnav {
+    margin-left: 120px;
+}
+
+#rightnav {
+    margin-right: 35px;
+    margin-left : 5px;
+}
+
 .writeform {
     width : 410px;
     position : absolute;

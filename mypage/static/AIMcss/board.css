@@ -1,3 +1,12 @@
+#leftnav {
+    margin-left: 25px;
+}
+
+#rightnav {
+    margin-right: 35px;
+    margin-left : 5px;
+}
+
 .boardbox {
     margin-top : 80px;
     
@@ -27,6 +36,11 @@ section{
     width:100%;
     display:flex;
     flex-direction: column;
+}
+
+section > a{
+    color : #000000;
+    text-decoration-line: none;
 }
 
 .post_row{

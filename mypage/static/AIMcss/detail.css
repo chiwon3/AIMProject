@@ -1,5 +1,10 @@
-.writebox{
-    /* padding-bottom:10rem; */
+#leftnav {
+    margin-left: 120px;
+}
+
+#rightnav {
+    margin-right: 35px;
+    margin-left : 5px;
 }
 
 .board_btn{

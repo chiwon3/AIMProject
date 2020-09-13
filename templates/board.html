@@ -5,7 +5,9 @@
 {% endblock %}
 
 {% block leftnav %}
-
+        <div class="cnt_post">
+            {{all_post|length}}개의 게시글
+        </div>
 {% endblock %}
 
 {% block rightnav%}
@@ -20,10 +22,9 @@
 <div class="boardbox">
         
     <div class="settingbar">
-        <div class="cnt_post">
+        {% comment %} <div class="cnt_post">
             {{all_post|length}}개의 게시글
-        </div>
-
+        </div> {% endcomment %}
     </div>
     <section>
         <div class="post_row post_row_label">
